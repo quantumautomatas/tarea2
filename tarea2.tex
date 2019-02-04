@@ -1,0 +1,99 @@
+%Tipo de formato
+\documentclass{article}
+
+%Ajustar márgenes
+\usepackage[margin = 1cm]{geometry}
+
+
+\begin{document}
+    
+    %Titulo
+    \title{Autómatas y Lenguajes formales 2019-2\\
+    \large Ejercicio Semanal 2}
+
+    \date{Fecha de entrega: 7 de febrero del 2019}
+
+    \author{Sandra del Mar Soto Corderi\\
+    Edgar Quiroz Castañeda}
+
+    \maketitle
+
+    %Problemas
+
+    \begin{enumerate}
+        \item {
+            Una cadena es palíndorma si es de la fomra $ww^R$.
+            \begin{enumerate}
+                \item {
+                    Define el conjunto de cadenas palíndromas de forma recursiva.
+                }
+                \item {
+                    Enuncia el pricnipio de Inducción generado por la definición
+                    del inciso anterior.
+                }
+                \item {
+                    Demuestra mediante inducción estrucutral que todas las 
+                    cadenas palíndromas \textbf{de ese tipo} tienen un número 
+                    par de símbolos
+                }
+                
+            \end{enumerate}
+        }
+        \item {
+            Dada la siguiente definición de árbol binario de elementos del 
+            conjunto $A$
+            \begin{itemize}
+                \item {
+                    Un árbol vacío $void$ es un árbol binario.
+                }
+                \item {
+                    Si $T_1$ y $T_2$ son árboles binarios, y $c$ es un elemento 
+                    de $A$, entonces $(T_1, c, T_2)$ es un árbol binario.
+                }
+                \item {
+                    Estos son todos los árboles binarios.
+                }
+            \end{itemize}
+            Responde a lo siguiente
+            \begin{enumerate}
+                \item {
+                    Define recursivamente la función $aplana$ que toma
+                    un árbol binario y devuelve una lista de sus elementos con 
+                    un recorrido $\textit{in order}$.
+                }
+                \item {
+                    Demuestre que para cualquer árbol binario $T$ se cumple que
+                    el número de nodos de $T$ es igual a la longitud de la lista 
+                    $aplana(T)$.
+                }
+            \end{enumerate}
+        }
+        \item {
+            Define recursivamente la función $sub?(u, v)$ que nos dice si $u$ 
+            es subcadena de $v$.
+        }
+        \item {
+            Considera los lenguajes $L = \{ 0, 1, 10, 11, 100, 101, 111 \}$ y 
+            $M = \{ 00, 01, 001, 11, 0100, 101, 0111 \}$.\\
+            Da los lenguajes resultantes de cada inciso
+            \begin{enumerate}
+                \item {
+                    $L \cup M$
+                }
+                \item {
+                    $M \cap L^R$
+                }
+                \item {
+                    $L - (M \cup L^R)$
+                }
+                \item {
+                    $(ML)^R$
+                }
+                \item {
+                    $L^2M^2$
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+
+\end{document}
