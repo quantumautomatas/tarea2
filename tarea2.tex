@@ -4,6 +4,9 @@
 %Ajustar márgenes
 \usepackage[margin = 1cm]{geometry}
 
+%Algunas símbolos matemáticos (letras caligráficas)
+\usepackage{amssymb}
+
 
 \begin{document}
     
@@ -22,19 +25,73 @@
 
     \begin{enumerate}
         \item {
-            Una cadena es palíndorma si es de la fomra $ww^R$.
+            Una cadena es palíndroma si es de la fomra $ww^R$.
             \begin{enumerate}
                 \item {
-                    Define el conjunto de cadenas palíndromas de forma recursiva.
+                    Define el conjunto $P$ de cadenas palíndromas de forma 
+                    recursiva.
+                    \begin{itemize}
+                        \item {
+                            $\epsilon$ es cadena palíndroma.
+                        }
+                        \item {
+                            Si $a \in \Sigma$ y $p \in P$, entonces $apa \in P$
+                        }
+                        \item {
+                            Estos son todos las cadenas palíndromas 
+                        }
+                    \end{itemize}
                 }
                 \item {
-                    Enuncia el pricnipio de Inducción generado por la definición
-                    del inciso anterior.
+                    Enuncia el principio de Inducción generado por la definición
+                    del inciso anterior.\\
+                    Sea $Pr$ alguna propiedad. Para demostrar que $Pr$ se cumple
+                    para todas las cadenas paíndromas, hay que hacer lo siguiente
+                    \begin{itemize}
+                        \item {
+                            Demostrar directamente que $Pr(\epsilon)$ es verdad.
+                        }
+                        \item {
+                            Asumir como hipótesis que si alguna cadena 
+                            palíndroma es de la forma, $apa$, entonces $Pr(p)$ es verdad.
+                        }
+                        \item {
+                            Demostrar que $P(apa)$ es verdad usando la 
+                            hipótesis del inciso anterior.
+                        }
+                    \end{itemize}
                 }
                 \item {
                     Demuestra mediante inducción estrucutral que todas las 
                     cadenas palíndromas \textbf{de ese tipo} tienen un número 
-                    par de símbolos
+                    par de símbolos.
+                    \begin{itemize}
+                        \item {
+                            Caso base, con $w = \epsilon$.\\
+                            Entonces $|w| = 0 = 2\cdot 0$.\\
+                            Por lo que $w = \epsilon$ tiene una cantidad par de 
+                            símbolos.
+                        }
+                        \item {
+                            La hipótesis es que si $awa$ es cadena palíndorma, 
+                            entonces $w$ tiene una cantidad par de símbolos, 
+                            esto es que $|w| = 2k$ para alguna $k \in \mathbb{N}$
+                        }
+                        \item {
+                            Notemos que $a \in \Sigma$ es un símbolo, para 
+                            también puede considerarse una cadena de un sólo 
+                            símbolo, por lo que las propiedades válidas para 
+                            cadenas también son válidas para $a$.\\
+                            En particular, tenemos que $|vw| = |v| + |w|$ 
+                            (demostrado en la tarea anterior).\\
+                            Por lo que
+                            \[|awa| = |a| + |aw| = |a| + |w| + |a| = 1 + |w| + 1
+                            = |w| + 2|\]
+                            Luego, por la hipótesis de inducción, $|w| = 2k$.\\
+                            Por lo que $|awa| = 2k + 2 = 2 (k+1)$, que es un 
+                            número par.\\
+                            Por lo que $awa$ tiene una cantidad par de símbolos.                        }
+                    \end{itemize}
                 }
                 
             \end{enumerate}
@@ -70,7 +127,20 @@
         }
         \item {
             Define recursivamente la función $sub?(u, v)$ que nos dice si $u$ 
-            es subcadena de $v$.
+            es subcadena de $v$.\\
+            Tenemos que $sub?: \Sigma^{*2} \rightarrow \{0, 1\}$ dada por
+            \begin{itemize}
+                \item {
+                    $sub? (\epsilon, v) = 1$
+                }
+                \item {
+                    $sub? (u, \epsilon) = 0$
+                }
+                \item {
+                    $sub?(\alpha u, \beta v) = ((\alpha == \beta) 
+                    \wedge sub?(u, v)) \vee (sub?(\alpha u, v))$
+                }
+            \end{itemize}
         }
         \item {
             Considera los lenguajes $L = \{ 0, 1, 10, 11, 100, 101, 111 \}$ y 
