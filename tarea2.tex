@@ -1,8 +1,8 @@
-%Tipo de formato
+%Margenes, idioma y tipo de documento
 \documentclass{article}
-
-%Ajustar márgenes
-\usepackage[margin = 1cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[margin = 1.5cm]{geometry}
 
 %Algunas símbolos matemáticos (letras caligráficas)
 \usepackage{amssymb}
@@ -25,7 +25,9 @@
 
     \begin{enumerate}
         \item {
-            Una cadena es palíndroma si es de la fomra $ww^R$.
+
+            Una cadena es palíndorma si es de la forma $ww^R$.
+            
             \begin{enumerate}
                 \item {
                     Define el conjunto $P$ de cadenas palíndromas de forma 
@@ -105,7 +107,7 @@
                 }
                 \item {
                     Si $T_1$ y $T_2$ son árboles binarios, y $c$ es un elemento 
-                    de $A$, entonces $(T_1, c, T_2)$ es un árbol binario.
+                    de $A$, entonces $(tree \ T_1, c, T_2)$ es un árbol binario.
                 }
                 \item {
                     Estos son todos los árboles binarios.
@@ -116,13 +118,53 @@
                 \item {
                     Define recursivamente la función $aplana$ que toma
                     un árbol binario y devuelve una lista de sus elementos con 
-                    un recorrido $\textit{in order}$.
+                    un recorrido $\textit{in order}$.\\
+		            
+		            Usando la definición de lista de objetos que está en las notas, podemos definir $aplana$ como:\\
+                    
+                    $aplana$ : Árbol binario c $\rightarrow \mathcal{L}$(c)\\
+					$aplana$ ($void$) = $nil$\\
+					$aplana$ $(tree \ T_1, c, T_2)$ = $cons(cons(aplana(T_1), c), aplana(T_2))$\\
+					
+En haskell sería algo así:
+					
+aplana :: Arbol a $\rightarrow $ [a]\\
+aplana void = []\\
+aplana (tree a t1 t2) = aplana t1 ++ [a] ++ aplana t2	\\				
+					
                 }
                 \item {
-                    Demuestre que para cualquer árbol binario $T$ se cumple que
+                    Demuestre que para cualquier árbol binario $T$ se cumple que
                     el número de nodos de $T$ es igual a la longitud de la lista 
                     $aplana(T)$.
-                }
+                    
+                    Demostramos realizando inducción sobre $T$ y usando la definición de lista de objetos que está en las notas:\\
+                    Sea $n$ el número de nodos de $T$
+                    \begin{itemize}                    
+                    \item {
+                        Caso base: $T = void$\\
+                        $n$ = 0 por la definición de árbol binario\\
+                        $aplana(T) =  nil$ por la definición de $aplana$ \\
+                        $len(nil) = 0$ por la definición de longitud en listas\\ Entonces como los nodos y la longitud de la lista son 0, se cumple el caso base.
+                        
+                    }
+					\item {
+                       Hipótesis de inducción:
+                       Suponemos verdadero que $n$ = $len(aplana(T))$ para los árboles $T_1$ y $T_2$\\
+                                           }
+                    Sea $n_1$ el número de nodos de $T_1$ y $n_2$ el número de nodos de $T_2$:
+                    \item {
+                        Paso inductivo, tenemos que demostrar que $len(aplana(tree \ T_1, c, T_2)) = n_1 + n_2 + 1$ \\ 
+                        $aplana$ $(tree \ T_1, c, T_2)$ = $cons(cons(aplana(T_1), c), aplana(T_2))$ por definición de $aplana$\\
+                        $len(cons(cons(aplana(T_1), c), aplana(T_2))) = len(cons(aplana(T_1), c)) + len(aplana(T_2)) $ por definición de longitud\\
+                        $len(cons(aplana(T_1), c))$ = $len(aplana(T_1)) + 1$ por definición de longitud\\
+                        De ahí, $len(aplana(tree \ T_1, c, T_2)) = len(aplana(T_1)) + len(aplana(T_2)) + 1 $ \\
+                        Usando la hipótesis de inducción, $len(aplana(tree \ T_1, c, T_2)) = n_1 + n_2 + 1$ 
+               }
+                \end{itemize}
+                Por lo tanto, se cumple  que el número de nodos de $T$ es igual a la longitud de la lista $aplana(T)$.
+            }\\
+                
             \end{enumerate}
         }
         \item {
@@ -148,20 +190,25 @@
             Da los lenguajes resultantes de cada inciso
             \begin{enumerate}
                 \item {
-                    $L \cup M$
+                    $L \cup M = \{0, 1, 10, 11, 100, 101, 111, 00, 01, 001, 0100, 0111 \}$ 
                 }
                 \item {
-                    $M \cap L^R$
+                    $M \cap L^R = \{01, 001, 11, 101 \}$
                 }
                 \item {
-                    $L - (M \cup L^R)$
+                    $L - (M \cup L^R) = \{10, 100 \}$
                 }
                 \item {
-                    $(ML)^R$
+                    $(ML)^R = \{000, 100, 0100, 1100, 00100, 10100, 11100, 010, 110, 0110, 1110, 00110, 10110, 11110, 01100, 001100, 101100,$\\
+                     $111100, 011, 111, 0111, 1111, 00111, 10111, 11111, 00010, 10010, 010010, 110010, 0010010, 1010010, 1110010, 0101, 1101,$\\
+                      $01101, 11101, 001101, 101101, 111101, 01110, 011110, 111110, 0011110, 1011110, 1111110 \}$
                 }
                 \item {
-                    $L^2M^2$
-                }
+                    $L^RM^R = \{000, 100, 0100, 1100, 00100, 10100, 11100, 010, 110, 0110, 1110, 00110, 10110, 11110, 01100, 001100, 101100,$\\
+                     $111100, 011, 111, 0111, 1111, 00111, 10111, 11111, 00010, 10010, 010010, 110010, 0010010, 1010010, 1110010, 0101, 1101,$\\
+                      $01101, 11101, 001101, 101101, 111101, 01110, 011110, 111110, 0011110, 1011110, 1111110 \}$
+                                                                  
+   }
             \end{enumerate}
         }
     \end{enumerate}
